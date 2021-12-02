@@ -108,7 +108,18 @@ fn quicksort<T: PartialOrd + std::fmt::Debug>(v: &mut [T]) {
     
     // ...
 
-    let smaller = 0; // Totally wrong – you should fix this.
+    let mut i = 0;
+    let pivot = length-1;
+    let mut smaller;
+
+    for j in 0..pivot{
+        if v[j] <= v[pivot]{
+            v.swap(j, i);
+            i+=1;
+        }
+    }
+    v.swap(i, pivot);
+    smaller = i;
 
     // Sort all the items < pivot
     quicksort(&mut v[0..smaller]);
