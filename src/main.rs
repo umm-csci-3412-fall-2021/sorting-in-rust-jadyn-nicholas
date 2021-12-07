@@ -195,7 +195,33 @@ fn merge<T: PartialOrd + std::marker::Copy + std::fmt::Debug>(xs: Vec<T>, ys: Ve
 
     // This is totally wrong and will not sort. You should replace it
     // with something useful. :)
-    xs
+    let mut v: Vec<T> = Vec::new();
+    let L1 = xs.len();
+    let L2 = ys.len();
+    let mut i = 0;
+    let mut j = 0;
+
+    while i<L1 && j<L2{
+        if xs[i]<ys[j] {
+            v.push(xs[i]);
+            i=i+1;
+        }
+        else {
+            v.push(ys[j]);
+            j=j+1;
+        }
+    }
+
+    while i<L1{
+        v.push(xs[i]);
+        i=i+1;
+    }
+
+    while j<L2{
+        v.push(ys[j]);
+        j=j+1;
+    }
+    v
 }
 
 fn is_sorted<T: PartialOrd>(slice: &[T]) -> bool {
